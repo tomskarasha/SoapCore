@@ -36,8 +36,7 @@ namespace SoapCore
 
 			using (var ms = new MemoryStream())
 			{
-				var serializer = new DataContractSerializer(detailObject.GetType());
-				serializer.WriteObject(ms, detailObject);
+				new XmlSerializer(detailObject.GetType()).Serialize(ms, detailObject);
 				ms.Position = 0;
 				var doc = new XmlDocument();
 				doc.Load(ms);
